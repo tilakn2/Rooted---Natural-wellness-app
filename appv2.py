@@ -12,6 +12,41 @@ import tempfile
 import os as os_module
 import os
 
+# Custom CSS for dark text
+st.markdown("""
+<style>
+    /* Make all text dark and readable */
+    .stMarkdown, .stText, p, span, div {
+        color: #2a1f15 !important;
+    }
+    
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #2a1f15 !important;
+    }
+    
+    /* Code blocks */
+    code {
+        color: #3d2817 !important;
+    }
+    
+    /* Lists */
+    li {
+        color: #2a1f15 !important;
+    }
+    
+    /* Links */
+    a {
+        color: #5a7c3e !important;
+    }
+    
+    /* Input labels */
+    label {
+        color: #2a1f15 !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Page config
 st.set_page_config(
     page_title="  ROOTED",
