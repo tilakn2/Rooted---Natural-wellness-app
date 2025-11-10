@@ -5,7 +5,8 @@ import streamlit as st
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
-from audiorecorder import audiorecorder
+#from audiorecorder import audiorecorder
+from audio_recorder_streamlit import audio_recorder as audiorecorder
 import whisper
 import tempfile
 import os as os_module
