@@ -382,7 +382,7 @@ audio = audiorecorder("🎙️ Click to Record", "⏺️ Recording... Click to S
 
 transcribed_text = ""
 
-if len(audio) > 0:
+if audio is not None:
     st.info(f"✅ Audio captured: {len(audio)} bytes")
     
     # Play back the audio so user can verify
