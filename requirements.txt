@@ -7,3 +7,5 @@ chromadb
 audio-recorder-streamlit
 openai-whisper
 torch
+sentence-transformers
+transformers
