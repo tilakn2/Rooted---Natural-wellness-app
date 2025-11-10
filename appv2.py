@@ -391,7 +391,9 @@ if audio is not None:
     
     # Save audio to temporary file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
-        audio.export(tmp_file.name, format="wav")
+        #audio.export(tmp_file.name, format="wav")
+        tmp_file.write(audio)
+        tmp_file.flush()
         tmp_filename = tmp_file.name
     
     # Transcribe using local Whisper
