@@ -386,7 +386,8 @@ if audio is not None:
     st.info(f"✅ Audio captured: {len(audio)} bytes")
     
     # Play back the audio so user can verify
-    st.audio(audio.export().read(), format="audio/wav")
+    #st.audio(audio.export().read(), format="audio/wav")
+    st.audio(audio, format="audio/wav")
     
     # Save audio to temporary file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
