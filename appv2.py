@@ -394,7 +394,7 @@ if audio is not None:
         #audio.export(tmp_file.name, format="wav")
         tmp_file.write(audio)
         tmp_file.flush()
-        audio_path = tmp_file.name
+        tmp_filename = tmp_file.name
     
     # Transcribe using local Whisper
     with st.spinner("🎧 Transcribing your speech..."):
