@@ -8,3 +8,7 @@ sentence-transformers
 openai-whisper
 pypdf
 audio-recorder-streamlit
+langchain
+langchain-community
+langchain-groq
+langchain-text-splitters
