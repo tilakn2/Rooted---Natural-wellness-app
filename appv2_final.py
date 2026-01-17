@@ -5,7 +5,8 @@ import streamlit as st
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
-from streamlit_audiorecorder import st_audiorecorder as audiorecorder
+#from streamlit_audiorecorder import st_audiorecorder as audiorecorder
+from st_audiorec import st_audiorec
 import whisper
 import tempfile
 import os as os_module
@@ -406,22 +407,39 @@ Now provide a DETAILED and COMPREHENSIVE remedy:"""
 st.markdown('<h3 style="text-align: center;">Speak or Type Your Issue</h3>', unsafe_allow_html=True)
 
 # Center the audio recorder to avoid a full-width bar
+# col_left, col_center, col_right = st.columns([1, 2, 1])
+# with col_center:
+#     audio = audiorecorder("🎙️ Click to Record", "⏺️ Recording... Click to Stop")
+
+# transcribed_text = ""
+
+# if len(audio) > 0:
+#     with col_center:
+#         st.info(f"✅ Audio captured: {len(audio)} bytes")
+        
+#         # Play back the audio so user can verify
+#         st.audio(audio.export().read(), format="audio/wav")
+    
+#     # Save audio to temporary file
+#     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
+#         audio.export(tmp_file.name, format="wav")
+#         tmp_filename = tmp_file.name
 col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
-    audio = audiorecorder("🎙️ Click to Record", "⏺️ Recording... Click to Stop")
+    audio_bytes = st_audiorec()
 
 transcribed_text = ""
 
-if len(audio) > 0:
+if audio_bytes:
     with col_center:
-        st.info(f"✅ Audio captured: {len(audio)} bytes")
+        st.info(f"✅ Audio captured")
         
         # Play back the audio so user can verify
-        st.audio(audio.export().read(), format="audio/wav")
+        st.audio(audio_bytes, format="audio/wav")
     
     # Save audio to temporary file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
-        audio.export(tmp_file.name, format="wav")
+        tmp_file.write(audio_bytes)
         tmp_filename = tmp_file.name
     
     # Transcribe using local Whisper
