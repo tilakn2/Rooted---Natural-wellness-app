@@ -10,3 +10,5 @@ openai-whisper
 torch
 sentence-transformers
 transformers
+pypdf
+torch
