@@ -196,6 +196,7 @@ def load_vectorstore():
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     persist_dir = "./chroma_db"
     needs_build = True
+    
     if os.path.isdir(persist_dir):
         try:
             if any(os.listdir(persist_dir)):
@@ -207,33 +208,36 @@ def load_vectorstore():
         with st.spinner("Building knowledge base from PDFs in ./data... This may take a few minutes on first run."):
             docs = []
             data_dir = "./data"
-        
-        # Debug: Check if directory exists
-        if not os.path.isdir(data_dir):
-            st.error(f"Data directory '{data_dir}' does not exist!")
-        else:
-            st.info(f"Found data directory: {data_dir}")
             
-            # Debug: List all files
-            all_files = []
-            for root, _, files in os.walk(data_dir):
-                for f in files:
-                    all_files.append(f)
-                    if f.lower().endswith(".pdf"):
-                        st.info(f"Loading PDF: {f}")
-                        loader = PyPDFLoader(os.path.join(root, f))
-                        docs.extend(loader.load())
-            
-            st.info(f"Files found in data directory: {all_files}")
-            
-        if docs:
-            splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
-            splits = splitter.split_documents(docs)
-            vectorstore = Chroma.from_documents(splits, embedding=embeddings, persist_directory=persist_dir)
-            st.success(f"Knowledge base built from {len(docs)} PDF pages/entries.")
-        else:
-            st.warning("No PDFs found in ./data. The app will run, but results may be limited until documents are added.")
-            vectorstore = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
+            # Debug: Check if directory exists
+            if not os.path.isdir(data_dir):
+                st.error(f"Data directory '{data_dir}' does not exist!")
+            else:
+                st.info(f"Found data directory: {data_dir}")
+                
+                # Debug: List all files
+                all_files = []
+                for root, _, files in os.walk(data_dir):
+                    for f in files:
+                        all_files.append(f)
+                        if f.lower().endswith(".pdf"):
+                            st.info(f"Loading PDF: {f}")
+                            loader = PyPDFLoader(os.path.join(root, f))
+                            docs.extend(loader.load())
+                
+                st.info(f"Files found in data directory: {all_files}")
+                
+            if docs:
+                splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+                splits = splitter.split_documents(docs)
+                vectorstore = Chroma.from_documents(splits, embedding=embeddings, persist_directory=persist_dir)
+                st.success(f"Knowledge base built from {len(docs)} PDF pages/entries.")
+            else:
+                st.warning("No PDFs found in ./data. The app will run, but results may be limited until documents are added.")
+                vectorstore = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
+    else:
+        vectorstore = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
+    
     return vectorstore
 
 vectorstore = load_vectorstore()
