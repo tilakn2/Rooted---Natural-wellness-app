@@ -21,12 +21,11 @@ st.set_page_config(
     layout="centered"
 )
 
-# Custom CSS for nature theme with incense animation
 st.markdown("""
 <style>
     /* Main background - soft cream/off-white with subtle texture */
     .stApp {
-        background: linear-gradient(135deg, #f5f1e8 0%, #e8e4d9 100%);
+        background: linear-gradient(135deg, #f5f1e8 0%, #e8e4d9 100%) !important;
     }
     
     /* Title styling - forest green */
@@ -43,7 +42,7 @@ st.markdown("""
     /* Subtitle */
     .subtitle {
         text-align: center;
-        color: #5a4a3a;
+        color: #5a4a3a !important;
         font-style: italic;
         font-size: 1.1em;
         margin-top: -10px;
@@ -51,27 +50,24 @@ st.markdown("""
     }
     
     /* Headers - earth tones */
-    h2, h3 {
+    h2, h3, h4 {
         color: #5a4a3a !important;
         font-family: 'Lato', serif !important;
     }
-        /* All remedy output text - dark brown for readability */
-    .main p {
+    
+    /* Force all text colors */
+    .main p, .main div, .main span, .main li {
         color: #3d3d3d !important;
     }
     
-    .main li {
-        color: #3d3d3d !important;
-    }
-    
-    .main strong {
+    .main strong, .main b {
         color: #2d5016 !important;
         font-weight: 600 !important;
     }
     
-    .main h1, .main h2, .main h3, .main h4 {
-        color: #5a4a3a !important;
-        display: block !important;
+    /* Markdown content */
+    .stMarkdown, .stMarkdown p, .stMarkdown div {
+        color: #3d3d3d !important;
     }
     
     /* Input boxes - natural wood tone */
@@ -88,9 +84,8 @@ st.markdown("""
         opacity: 0.7 !important;
     }
 
-
     /* Text area label - match the brown color */
-    .stTextArea label {
+    .stTextArea label, label {
         color: #3d3d3d !important;
         font-size: 16px !important;
         font-weight: 500 !important;
@@ -121,7 +116,7 @@ st.markdown("""
         background: linear-gradient(180deg, #3d5a2c 0%, #2d4a1c 100%) !important;
     }
     
-    [data-testid="stSidebar"] * {
+    [data-testid="stSidebar"] *, [data-testid="stSidebar"] p, [data-testid="stSidebar"] div {
         color: #f5f1e8 !important;
     }
     
@@ -132,10 +127,13 @@ st.markdown("""
     }
     
     /* Warning boxes - warm amber */
-    .stAlert {
+    .stAlert, [data-baseweb="notification"] {
         background-color: #fff4e6 !important;
         border-left: 4px solid #d4a574 !important;
         border-radius: 8px !important;
+    }
+    
+    .stAlert *, [data-baseweb="notification"] * {
         color: #5a4a3a !important;
     }
     
@@ -170,25 +168,7 @@ st.markdown("""
         background-color: #faf8f3 !important;
     }
     
-    
-    @keyframes glow {
-        0%, 100% {
-            box-shadow: 
-                0 0 8px #ff6600, 
-                0 0 15px #ff3300,
-                0 0 20px rgba(255, 51, 0, 0.5);
-            transform: translateX(-50%) scale(1);
-        }
-        50% {
-            box-shadow: 
-                0 0 15px #ff6600, 
-                0 0 25px #ff3300, 
-                0 0 35px rgba(255, 0, 0, 0.7);
-            transform: translateX(-50%) scale(1.1);
-        }
-    }
-    
-    /* Add some padding to the main content to avoid incense overlap */
+    /* Add some padding to the main content */
     .main .block-container {
         padding-bottom: 100px !important;
     }
@@ -205,14 +185,6 @@ st.markdown("""
         text-decoration: underline !important;
     }
 </style>
-
-<!-- Incense stick and smoke animation -->
-<div class="incense-stick">
-    <div class="incense-tip"></div>
-</div>
-<div class="smoke"></div>
-<div class="smoke"></div>
-<div class="smoke"></div>
 """, unsafe_allow_html=True)
 
 st.title("  ROOTED")
