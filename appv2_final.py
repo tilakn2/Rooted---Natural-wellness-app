@@ -6,7 +6,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 #from streamlit_audiorecorder import st_audiorecorder as audiorecorder
-from st_audiorec import st_audiorec
+from audio_recorder_streamlit import audio_recorder
 import whisper
 import tempfile
 import os as os_module
@@ -426,7 +426,7 @@ st.markdown('<h3 style="text-align: center;">Speak or Type Your Issue</h3>', uns
 #         tmp_filename = tmp_file.name
 col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
-    audio_bytes = st_audiorec()
+    audio_bytes = audio_recorder(text="Click to record", icon_size="2x")
 
 transcribed_text = ""
 
