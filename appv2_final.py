@@ -335,7 +335,8 @@ vectorstore = load_vectorstore()
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     temperature=0.5,
-    groq_api_key=os.environ.get("GROQ_API_KEY")
+    #groq_api_key=os.environ.get("GROQ_API_KEY")
+    groq_api_key=st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY"))
 )
 
 def get_remedy(user_issue):
