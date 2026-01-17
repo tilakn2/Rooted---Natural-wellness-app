@@ -1,13 +1,10 @@
 streamlit
-python-dotenv
+groq
 langchain
 langchain-community
 langchain-groq
 chromadb
-openai-whisper
-torch
 sentence-transformers
-transformers
+openai-whisper
 pypdf
-torch
-st-audiorec
+audio-recorder-streamlit
