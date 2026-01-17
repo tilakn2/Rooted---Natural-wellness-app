@@ -338,9 +338,9 @@ col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
     # audio_bytes = audio_recorder(text="Click to record", icon_size="2x")
     audio_bytes = audio_recorder(
-    text="🎙️ Click to Record",
+    text="Click to Record",
     recording_color="#ff3300",
-    neutral_color="#5a7c3e",
+    neutral_color="#ffffff",
     icon_size="1x"
 )
 
