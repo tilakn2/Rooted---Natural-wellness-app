@@ -12,7 +12,7 @@ import tempfile
 import os as os_module
 import os
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitters import RecursiveCharacterTextSplitter
 
 # Page config
 st.set_page_config(
