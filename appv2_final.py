@@ -204,9 +204,9 @@ def load_vectorstore():
             needs_build = True
 
     if needs_build:
-    with st.spinner("Building knowledge base from PDFs in ./data... This may take a few minutes on first run."):
-        docs = []
-        data_dir = "./data"
+        with st.spinner("Building knowledge base from PDFs in ./data... This may take a few minutes on first run."):
+            docs = []
+            data_dir = "./data"
         
         # Debug: Check if directory exists
         if not os.path.isdir(data_dir):
