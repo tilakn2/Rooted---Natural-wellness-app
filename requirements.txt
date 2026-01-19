@@ -6,7 +6,7 @@ langchain-groq
 chromadb
 sentence-transformers
 openai-whisper
-pypdf
+pypdf>=4.0.0
 audio-recorder-streamlit
 langchain
 langchain-community
