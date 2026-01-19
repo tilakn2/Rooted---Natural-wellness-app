@@ -216,14 +216,28 @@ def load_vectorstore():
                 st.info(f"Found data directory: {data_dir}")
                 
                 # Debug: List all files
+                # all_files = []
+                # for root, _, files in os.walk(data_dir):
+                #     for f in files:
+                #         all_files.append(f)
+                #         if f.lower().endswith(".pdf"):
+                #             st.info(f"Loading PDF: {f}")
+                #             loader = PyPDFLoader(os.path.join(root, f))
+                #             docs.extend(loader.load())
                 all_files = []
                 for root, _, files in os.walk(data_dir):
                     for f in files:
                         all_files.append(f)
                         if f.lower().endswith(".pdf"):
                             st.info(f"Loading PDF: {f}")
-                            loader = PyPDFLoader(os.path.join(root, f))
-                            docs.extend(loader.load())
+                            try:
+                                loader = PyPDFLoader(os.path.join(root, f))
+                                loaded_docs = loader.load()
+                                docs.extend(loaded_docs)
+                                st.success(f"✅ Loaded {f} successfully ({len(loaded_docs)} pages)")
+                            except Exception as e:
+                                    st.error(f"⚠️ Could not load {f}: {str(e)}")
+                                    st.warning(f"Skipping {f} - try converting it to a simpler PDF format")
                 
                 st.info(f"Files found in data directory: {all_files}")
                 
